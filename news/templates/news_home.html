@@ -4,17 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latest News</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .news-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item h2 {
+            font-size: 22px;
+            color: #333;
+        }
+        .news-item p {
+            font-size: 16px;
+            color: #666;
+        }
+        .news-item a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Top Business News</h1>
-    <ul>
-        {% for article in articles %}
-            <li>
-                <h2>{{ article.title }}</h2>
-                <p>{{ article.description }}</p>
-                <a href="{{ article.url }}" target="_blank">Read More</a>
-            </li>
-        {% endfor %}
-    </ul>
+
+    <div class="container news-container">
+        <h1>Top Business News</h1>
+        <ul class="list-unstyled">
+            {% for article in articles %}
+                <li class="news-item">
+                    {% if article.urlToImage %}
+                        <img src="{{ article.urlToImage }}" alt="News Image" class="news-image">
+                    {% endif %}
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.description }}</p>
+                    <a href="{{ article.url }}" target="_blank">Read More</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
